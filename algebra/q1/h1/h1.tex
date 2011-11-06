@@ -1,0 +1,168 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb,fullpage}
+
+\newcommand\ZZ{\mathbb Z}
+\newcommand\Zm[1]{\ZZ/#1\ZZ}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Hom{Hom}
+\DeclareMathOperator\im{im}
+
+\title{Algebra Homework 1}
+\author{Mendel Feygelson}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+   \item
+      \begin{enumerate}
+
+         \item We take $N$ to be the subgroup consisting of upper triangular
+            matrices with 1s on the diagonal. We note that when multiplying two
+            matrices in $A \in B$, their diagonal entries multiply termwise, so
+            a diagonal entry of $A^{-1}$ is the inverse of the corresponding
+            diagonal entry of $A$, and so if $X \in N$, we see that the diagonal
+            entries of $A^{-1}XA$ are 1, so $N$ is normal. Clearly $N \cap T =
+            1$, and if we have a matrix $(a_{ij}) \in B$, then multiplying the
+            matrix in $T$ whose diagonal is given by $(a_{ii})$ by the matrix in
+            $N$ whose entries are given by $(\frac{a_{ij}}{a_{ii}})$ (on the
+            right) gives us back $A$, so $B = TN$.
+
+         \item $T$ is abelian, so we need to show that $N$ is solvable. We
+            consider the subspace of $R^n$ where the last entry is zero. $N$
+            acts on this space like the corresponding group in dimension $n-1$.
+            And the kernel of this action, the subgroup where all of the
+            non-diagnal entries outisde the last column are zero, is isomorphic
+            to the additive group of $n-1$, so is abelian. So by induction, we
+            have that $N$ is solvable.
+
+      \end{enumerate}
+
+   \item 
+      \begin{enumerate}
+
+         \item The commutator of $S_4$ contains every element of the form
+            $\sigma\sigma^\tau$, with $\sigma$ and $\tau$ in $S_4$. In
+            particular, since the 2-cycles form a single conjugacy class, it
+            contains every element that can be written as the product of two
+            2-cycles, and these generate $A_4$, so $S_4' = A_4$. But $A_4$ is
+            not abelian, so $S_4$ is not metabelian. However, $A_4$ is solvable
+            as we'll see later, and $S_4/A_4$ has order 2, so $S_4$ is solvable.
+         
+         \item We've seen that every group of order $p^2$ is abelian, so every
+            group of order $p^4$ is metabelian (we use the fact that a $p$-group
+            has a normal subgroup corresponding to every power of $p$ dividing
+            the order of the group, so in particular a group of order $p^4$ has
+            a normal subgroup of order $p^2$). So all $p$-groups of order less
+            than 24 are metabelian. We've also seen that groups of order $pq$
+            are metabelian. Thus the only orders that remain to check are 12,
+            18, and 20. But these all have order $p^2q$ and all groups of order
+            $p^2q$ are metabelian as a consequence of the solution to 3(a).
+
+      \end{enumerate}
+
+   \item
+      \begin{enumerate}
+
+         \item If $p^2 < q$, then the Sylow $q$-subgroup is normal and solvable,
+            and we know that groups of order $p^2$ are solvable, so $G$ is
+            solvable.
+
+            Suppose $p^2 > q$, and suppose the Sylow $p$-subgroup is not normal.
+            That means that there are $q$ of them, and that $q \equiv 1 \mod p$.
+            Now if the Sylow $q$-subgroup is not normal, then there must be at
+            least $p$ of them. If there are exactly $p$, then $p \equiv 1 \mod
+            q$, which can't happen since $q > p$. So there must be $p^2$
+            $q$-subgroups. Distinct $q$-groups can only intersect at the
+            identity, so that's $p^2q - p^2$ elements of order $q$. But that
+            leaves only $p^2$ elements not of order $q$, so there can only be
+            one Sylow $p$-subgroup, which is normal. So either the Sylow
+            $p$-subgroup or Sylow $q$-subgroup is normal, so by taking the
+            quotient we see that $G$ is solvable.
+
+         \item The only orders remaining to check are $24 = 2^3\cdot3$, $30 =
+            2\cdot3\cdot5$, $32 = 2^5$, $36 = 2^2\cdot3^2$, $40=2^3\cdot5$, $42
+            = 2\cdot3\cdot7$, $48 = 2^4\cdot3$, $54=2\cdot3^3$, and
+            $56=2^3\cdot7$. $p$-groups are always solvable, so groups of order
+            32 aren't a concern, and a group of order 54 has a normal Sylow
+            subgroup of order 27, so is solvable.
+
+            In the case of 30, there can be either one or six Sylow 5-subgroups.
+            If there are six, that accounts for 24 elements of order 5, so there
+            cannot be ten Sylow 3-subgroups.
+
+            In the case of 40, there can only be one Sylow 5-subgroup. In the
+            case of 42, there can only be one Sylow 7-subgroup. In the case of
+            56, there must be eight Sylow 7-subgroups, yielding 48 elements of
+            order 7, and only enough room for one Sylow 2-subgroup.
+
+            That leaves 24, 36, and 48. I'm going to work out the technique to
+            do these some other time.
+
+      \end{enumerate}
+
+   \item There is of course the direct product $\Zm{p^2} \times \Zm{p}$. To get
+      a different semidirect product, we need a nontrivial homomorphism $\Zm p
+      \to \Aut(\Zm{p^2}) = (\Zm{p^2})^\times$. $(\Zm{p^2})^\times$ is a cyclic
+      group of order $p(p-1)$, so is isomorphic to $\Zm{p} \times \Zm{p-1}$. So
+      we can get a semidirect product by mapping $\Zm{p}$ to the subgroup of
+      $\Aut(\Zm{p^2})$ isomorphic to $\Zm{p}$.
+
+   \item First, if $q=2$, then $b=b^{-1}$, and this is just the usual
+      presentation of the dihedral group $D_{2p}$, and similarly if $p=2$, this
+      is just the usual presentation of $D_{2q}$ (the relation $ab^{-1}a = b$
+      follows from the relation $aba = b^{-1}$). Suppose $p$ and $q$ are both
+      odd.  We have $a^{-1} = bab = b^{-1}ab^{-1}$, so $a^{-2} = b^{-1}a^2b$,
+      and if $r$ is the inverse of 2 modulo $p$, then taking this relation to
+      the power $r$, we see that $a^b = a^{-1}$. But then $1 = abab = b^2 =
+      b^q$, so $b=1$, so $1 = a^2 = a^p$, so $a=1$ and the group is trivial.
+
+   \item $f_*$ takes a map $h : G \to A$ to $f \circ h : G \to B$, and $f^*$
+      takes a map $h : B \to G$ to $h \circ f : A \to G$. These are
+      homomorphisms since $f$ is a homomorphism. $f_*$ is injective since $f$ is
+      injective ($f$ has trivial kernel, so if $f_*(h)$ is trivial, then $\im h
+      \subset \ker f = 1$, so $g$ is trivial). $\im(g_*(f_*(h)) \subset \im(g
+      \circ f) = 1$, so $g_* \circ f_* = 1$. And if $g_*(h) = 1$ then $\im h
+      \subset \ker g = \im f$, and so since $f$ injects $A$ into $B$, it induces
+      an isomorphism $A \cong \im f$, so this gives us a map $\tilde h : G \to
+      \im f \cong A$ such that $f \circ \tilde h = h$. So the first diagram is
+      exact.
+
+      Similarly, $g^*$ is injective because $g$ is surjective -- if $g^*(h) =
+      1$, then $h$ must be identically 1 on $C$. And $f^*(g^*(h)) = h \circ g
+      \circ f \equiv 1$ since $g \circ f = 1$. And if we have $h : B \to G$ such
+      that $h \circ f = 1$, so $h$ is trivial on the image of $f$, which is the
+      kernel of $g$, then $h$ factors through $g$, so $h$ = $\tilde h \circ g$
+      for $\tilde h : C \to G$, so $h$ is in the image of $g^*$.
+
+      Finally, consider the exact sequence $1 \to \ZZ \to \ZZ \to \Zm2 \to 1$,
+      where the first map is multiplication by 2. We have the identity map $\Zm2
+      \to \Zm2$, but that doesn't factor through $\ZZ$ since every map $\Zm2 \to
+      \ZZ$ is trivial, so the first sequence need not be surjective. Also, the
+      identity map $\ZZ \to \ZZ$ doesn't factor through multiplication by 2, so
+      we see that the second sequence also isn't surjective.
+
+   \item An element of $\Hom(G,H_1) \times_{\Hom(G,K)} \Hom(G,H_2)$ is given by
+      a pair of maps $G \to H_1$ and $G \to H_2$ that give the same map to $K$.
+      But then by the universal property of pullback, this gives us a unique map
+      $G \to H_1 \times_K H_2$, and conversely, any map $G \to H_1 \times_K H_2$
+      gives us maps $G \to H_1$ and $G \to H_2$ which give the same map to $K$.
+      And it's pretty clear that this identification is natural.
+
+      Similarly, an element of $\Hom(H_1,G) \times_{\Hom(K,G)} \Hom(H_2,G)$
+      is given by two maps $H_1 \to G$ and $H_2 \to G$ which agree on $K$, and
+      this is precisely what maps $H_1 *_K H_2 \to G$ are.
+
+   \item It suffices to check that the group defined by these generators and
+      relations satisfies the universal property of coproduct. Call this group
+      $E$. We have a map $S_1 \to E$, which lifts to a map $F(S_1) \to E$, and
+      since this map is zero on $R_1$, it factors through $G$, so we have a map
+      $G \to E$, and similarly we have a map $H \to E$. Now suppose we have maps
+      $f$ and $g$ from $G$ and $H$ respectively to a group $X$. These give us
+      maps $S_1 \to G \stackrel{f}\to X$ and $S_2 \to H \stackrel{g}\to X$, and
+      so we have maps from the free groups. And these maps are zero on $R_1$ and
+      $R_2$, so this gives us a map $E \to X$, which is uniquely determined
+      since $f$ and $g$ determine where the generators go.
+
+\end{enumerate}
+\end{document}
