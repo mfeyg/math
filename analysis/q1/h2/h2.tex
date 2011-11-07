@@ -1,0 +1,136 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fullpage}
+\usepackage{mathrsfs}
+
+\newcommand\ZZ{\mathbb Z}
+\newcommand\RR{\mathbb R}
+\newcommand\CC{\mathbb C}
+\newcommand\NN{\mathbb N}
+\newcommand\C{\mathscr C}
+\renewcommand\L{\mathscr L}
+\newcommand\B{\mathscr B}
+\newcommand\F{\mathscr F}
+
+\title{Analysis Homework 2}
+\author{Mendel Feygelson}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+   \item Let $\C$ be the set of points of continuity of $f$. If $x \in \C$, then
+      for $\varepsilon>0$, there exists an open neighborhood $U$
+      of $x$ such that for all $y \in U$, $|f(y) - f(x)| <
+      \varepsilon$. Take $U(x,\varepsilon)$ to be the union of all such open
+      neighborhoods.
+
+      Let $U_\varepsilon = \bigcup_{x \in C} U(x,\varepsilon)$. This is an open
+      set, so $\L = \bigcap_{\varepsilon=\frac1n} U_\varepsilon$ is measurable.
+      Note that $\L \supset \C$. And if $x \in \L$, then for $\varepsilon>0$, $x
+      \in U(x',\frac\varepsilon2)$ for some $x'$ (since for $\frac1n <
+      \frac\varepsilon2$, $x \in U_{\frac1n}$, so $x \in U(x',\frac1n) \subset
+      U(x',\frac\varepsilon2)$ for some $x'$). But then for $y \in
+      U(x',\frac\varepsilon2)$, $|f(y) - f(x)| \leq |f(y) - f(x')| + |f(x') +
+      f(x)| < \frac\varepsilon2 + \frac\varepsilon2 = \varepsilon$. So for every
+      $\varepsilon$, there's a neighborhood $U = U(x',\frac\varepsilon2)$ of $x$
+      such that when $y \in U$, $|f(y) - f(x)| < \varepsilon$. So $f$ is
+      continunous at $x$. So $\L = \C$, and so $\C$ is measurable.
+
+   \item Let $U$ be an open set in $\RR$. If $x \in f^{-1}(U)$, and $x \not\in
+      D$, then $f$ is continuous at $x$, and so $f^{-1}(U)$ contains some
+      neighborhood of $x$. The union of all such neighborhoods for all such $x$
+      is an open set contained in $f^{-1}(U)$ which contains all points of
+      $f^{-1}(U)$ which aren't in $D$. So $f^{-1}(U)$ differs from an open set
+      by at most countably many points, so is measurable.
+
+      Define a function $f(x)$ by $f(x) = 0$ if $x$ is irrational and $f(x) =
+      \frac1n$ if $x = \frac mn$ in lowest terms (and $f(0) = 1$). Then $f$ is
+      continous at $x$ irrational since any sequence of rational points
+      approaching $x$ must have arbitrarily large denominators, but $f$ is
+      discontinuos at rational points since any rational $x$ has irrational
+      points arbitrarily near it (but $f(x) \neq 0$).
+
+   \item We define $A_s = \{ x \in (0,1) : \left| x - \frac rs \right| \leq
+         \frac1{s^2(\log s)^{1+\varepsilon}} \textrm{ for some } 1 \leq r < s
+      \}$.
+      
+      Then $A_s \subset \bigcup_{1 \leq r < s} B_{\frac1{s^2(\log
+         s)^{1+\varepsilon}}}(\frac rs)$, so $m(A_s) < \frac2{s(\log
+            s)^{1+\varepsilon}}$.
+            
+      So \[\sum_{n=2}^\infty m(A_s) < \sum_{n=2}^\infty \frac2{s(\log
+         s)^{1+\varepsilon}} < \infty\] since \[\int_2^\infty \frac{ds}{s(\log
+            s)^{1-\varepsilon}} = \frac1{\varepsilon(\log2)^\varepsilon} <
+            \infty \]
+
+      So by Borel-Cantelli, $m(\limsup A_s) = 0$, so almost all points $x$ are
+      in $A_s$ for only finitely many $s$, so satisfy the given property for
+      only finitely many pairs $r$ and $s$.
+
+   \item If $s = \sum \alpha_i \chi_{(f^{-1}(B_i))}$ then if $\tilde s = \sum
+      \alpha_i \chi_{B_i}$ then $s = \tilde s \circ f$. And if $g : X \to \RR$
+      is measurable then there is a monotone increasing sequence of simple
+      functions $s_i \to g$, and then $\tilde s_i$ is an increasing sequence of
+      functions with $\tilde s_i \circ f \to g$. So if $h = \lim \tilde s_i$
+      then $g = h \circ f$. Conversely, $f$ is clearly measurable, so any
+      function given by $h \circ f$ for a measurable function $h$ is measurable.
+
+   \item For each $n \in \NN$, choose $B^n_i$ and $B^n_e$ such that $B^n_i
+      \subset A \subset B^n_e$ and $m(B^n_e \setminus B^n_i) < \frac1n$.
+
+      Let $B_i = \bigcup B^n_i$ and let $B_e = \bigcap B^n_e$. Then $m(B_e
+      \setminus B_i) = 0$ and $A \setminus B_i \subset B_e \setminus B_i$ is
+      Lebesgue measurable since the Lebesgue measure is complete. So $A$ is
+      Lebesgue measurable since $B_i$ is.
+
+   \item Cleary $\nu(\varnothing) = 0$ and if $C_i$ is a collection of disjoint
+      measurable sets then $\nu(\bigcup C_i) = \int_{\bigcup C_i} f\,d\mu =
+      \int_X \chi_{(\bigcup C_i)} f\,d\mu = \int_X \sum \chi_{C_i} f\,d\mu =
+      \sum \int_X \chi_{C_i} f\,d\mu = \sum \nu(C_i)$ (by monotone convergence).
+
+   \item Suppose $|f| > C$ on some set $E$ of positive measure. Setting $h$ to
+      be the characteristic function of $E$, we see that $\int_E |f| \leq \int_E
+      C$, so we have a function $g = |f| - C > 0$ on a set $E$ of positive
+      measure such that $\int_E g = 0$.
+
+      Let $E_n = \{ x \in E : g(x) \geq \frac1n \}$. So $g_n = \frac1n\chi_{E_n}
+      \leq g$ (on $E$). So $\int_E g_n \leq \int_E g = 0$, so $\mu(E_n) = 0$. But
+      $E = \bigcup E_n$, so $\mu(E) = 0$ -- a contradiction.
+
+   \item Let $g_n = |f| + |f_n| + |f_n - f|$. Then $0 \leq g_n \leq 2|f|$, and
+      $g_n \to 2|f|$, so $\int g_n \to 2 \int f$. But $\int g_n = \int |f| +
+      \int |f_n| + \int |f_n - f| \to 2 \int |f| + \int |f_n-f|$, so $\int |f_n
+      - f| \to 0$.
+
+   \item Write $\nu(A) = \int_A |f|$. We know that $\nu$ is a measure on $\F$.
+      Fix $\varepsilon>0$. Suppose that for any $n$, there is an $A_n$ with
+      $\mu(A_n) < \frac1n$ such that $\nu(A_n) > \epsilon$. Since $\nu(X)$ is
+      finite, we know that $\nu(A_n \setminus \bigcup_{i<n} A_n) \to 0$ and $n
+      \to \infty$. So for $n>N$, all these terms are less than
+      $\frac\varepsilon2$. But then for $n>N$, $\nu(A_n \cap \bigcup_{i<n} A_n)
+      > \frac\varepsilon2$. Say $B_n = A_{n+N}$. The $B_n$ are nested, so
+      $\nu(\bigcap B_n) = \inf \nu(B_n) \geq \frac\varepsilon2$. But
+      $\mu(\bigcap B_n) = 0$, so this is a contradiction since $\nu(\bigcap B_n)
+      = \int_{(\bigcap B_n)} |f| = 0$. This proves part (1).
+
+      And this shows that $F$ is continuous -- with $\varepsilon$ and $\delta$
+      as in the first part, if $|x-y| < \delta$, then $|F(x) - F(y)| = |\int_x^y
+      f| \leq \int_x^y |f| \leq \varepsilon$ since $m(x,y) < \delta$.
+
+   \item I believe this was shown in class. Any open $U \subset \RR$ is a
+      countable union of open intervals so $\int_U f = 0$. Let $E \subset \RR$
+      be measurable. Then for any $\varepsilon>0$, there is a $U \supset E$ open
+      such that $m(U \setminus E) < \varepsilon$. Thus, appealing to the last
+      problem, we can find open $U \supset E$ such that $\int_{U \setminus E}
+      |f| < \varepsilon$. Then $|\int_E f| = |\int_U f - \int_{U \setminus E} f|
+      = |\int_{U \setminus E} f| \leq \int_{U \setminus E} |f| < \varepsilon$
+      for all $\varepsilon$. So $\int_E f = 0$.
+
+      Now, let $E^+_n$ be the set of points where $f > \frac1n$. Then
+      $\int_{E^+_n} f = 0$, so $m(E^+_n) = 0$, and similarly for $E^-_n = \{f <
+      -\frac1n\}$. So $\{f \neq 0\}$, which is the union of these sets, has
+      measure zero.
+
+\end{enumerate}
+\end{document}
