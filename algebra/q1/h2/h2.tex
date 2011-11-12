@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fullpage}
+%\usepackage{mathrsfs}
+
+\newcommand\ZZ{\mathbb Z}
+\newcommand\RR{\mathbb R}
+\newcommand\CC{\mathbb C}
+\newcommand\QQ{\mathbb Q}
+\newcommand\C{\mathcal C}
+\newcommand\D{\mathcal D}
+\newcommand\F{\mathcal F}
+\newcommand\G{\mathcal G}
+\DeclareMathOperator\Hom{Hom}
+\DeclareMathOperator\Gal{Gal}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\sgn{sgn}
+
+\title{Algebra Homework 2}
+\author{Mendel Feygelson}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+   \item Given a diagram $\{X_i \to X_j : i < j\}$ with a limit $\varinjlim
+      X_i$, since $F$ is a functor, we have maps $F(X_i) \to F(\varinjlim X_i)$
+      compatible with the maps $F(X_i) \to F(X_j)$. To show that this is the
+      direct limit, we need to show that given a $Y \in \D$, with compatible
+      maps $F(X_i) \to Y$, we have a unique map $F(\varinjlim X_i) \to Y$
+      compatible with all of the other maps. But the maps $F(X_i) \to Y$
+      correspond to maps $X_i \to G(Y)$, which give us a unique compatible map
+      $\varinjlim X_i \to G(Y)$, and so there is in fact a unique compatible map
+      $F(\varinjlim X_i) \to Y$, since $\Hom_\D(F(\varinjlim X_i), Y) \cong
+      \Hom_\C(\varinjlim X_i, G(Y))$.
+
+   \item Clearly $k(\alpha^2) \subset k(\alpha)$, so we just need to check that
+      $\alpha \in k(\alpha^2)$. Say $\alpha^d = \sum_{i=0}^{d-1} a_i\alpha^i$,
+      for $d$ odd. Then we write $\alpha^{d+1} = \alpha\sum_{i=0}^{\frac{d-1}2}
+      a_{2_i}\alpha^{2i} + \sum_{i=1}^{\frac{d-1}2} a_{2i-1}\alpha^{2i}$, so we
+      see that $\alpha \in k(\alpha^2)$.
+
+   \item Let $\alpha$ be a root of $X^p-a$. If the characteristic of $k$ is $p$,
+      then $X^p-a = (X-\alpha)^p$. And any irreducible polynomial of
+      characteristic less than $p$ must have distinct roots, so we see that a
+      monic irreducible factor of $X^p-a$ must be either $X^p-a$ or $X-\alpha$.
+
+      Now if the characteristic of $k$ is not $p$, let $\zeta$ denote a
+      primitive $p$th root of unity. Then the roots of $X^p-a$ are given by
+      $\zeta^i\alpha$ for $0 \leq i < p$. So
+      \[ X^p - a = \prod_{i=0}^{p-1} (X-\zeta^i\alpha) \]
+      So any factor of $X^p-a$ will have a constant term that looks like
+      $\zeta^i\alpha^n$. Suppose $\zeta^i\alpha^n \in k$ for some $0<n<p$. Let
+      $m,d \in \ZZ$ such that $mn = dp + 1$. Then $(\zeta^i\alpha^n)^m =
+      \zeta^{im}\alpha\cdot a^d \in k$, so $\zeta^{im}\alpha \in k$. So then $k$
+      contains a root of $X^p-a$. So if $k$ doesn't contain any roots of $X^p-a$
+      then $k[X]$ doesn't contain any proper divisors of $X^p-a$.
+
+      Finally, note that $X^4+1 = (X^2 + \sqrt2X + 1)(X^2 - \sqrt2X + 1)$ has no
+      roots in $\RR$, so we need $p$ prime.
+
+   \item Let $\alpha \in K$. We let $f_\alpha = \prod X-\beta$, where $\beta$
+      ranges over the $G$-orbit of $\alpha$. This polynomial is fixed by $G$, so
+      is in $K^G[X]$. It has $\alpha$ as a root, it has distinct roots, and all
+      of its roots are in $K$. So $K / K^G$ is normal and separable. And I'm
+      hoping that the proof from class $[K:K^G] \leq |G|$ follows through to
+      show that it is finite. Finally, it's clear that $G \leq \Gal(K/K^G)$, and
+      then we have that $|\Gal(K/K^G)| \leq [K:K^G] \leq |G|$, so $G =
+      \Gal(K/K^G)$.
+
+   \item We know that if $\alpha$ is separable and $\beta$ is separable, then
+      $k[\alpha,\beta]$ is separable (it's contained in the splitting field of
+      the product of the minimal polynomials of $\alpha$ and $\beta$, which are
+      separable), so clearly the set of separable elements forms a subfield, and
+      it's clear that it's the maximal separable intermediate field.
+
+      Finally, if $\alpha \in K$ is separable over $K_s$, then $K_s[\alpha]$ is
+      separable over $k$. (Say, taking normal closures, we have $k \subset
+      K_{sn} \subset L$, where $L$ is the splitting field of the minimal
+      polynomial of $\alpha$ over $K_{sn}$. Then these are both Galois
+      extensions, so nothing in $L \setminus K_{sn}$ is fixed by
+      $\Gal(L/K_{sn})$ and nothing in $K_{sn}/k$ is fixed by $\Gal(K_{sn}/k)$,
+      and since $L$ is a splitting field, every $\sigma \in \Gal(K_{sn}/k)$
+      extends to a $\overline\sigma \in \Gal(L/k)$. So nothing in $L \setminus
+      k$ is fixed by $\Gal(L/k)$, so $L/k$ is Galois, so $\alpha \in L$ is
+      separable over $k$.) Thus, any $\alpha \in K \setminus K_s$ is inseparable
+      over $K_s$. Let $f$ be its minimal polynomial over $K_s$. We claim that
+      $f$ is of degree $p^n$. We know that $f = g(X^p)$ for some $g \in K_s[X]$.
+      Suppose $g$ is separable. Then $\alpha^p$ is a root of $g$, so is in
+      $K_s$. So $\alpha$ is a root of $X^p - \alpha^p$, so $f | X^p - \alpha^p$,
+      so $\deg f = p$. Otherwise, $g$ is inseparable, so by induction on degree,
+      $\deg g = p^{n-1}$ for some $n$, so $\deg f = p^n$. Finally, I need to
+      think about what happens when I adjoin multiple inseparable elements, but
+      I don't want to think about that right now.
+
+   \item If $\alpha \in K_s$, then its minimal polynomial is separable so all of
+      its roots are separable, so all of its roots are in $K_s$ so $K_s/k$ is
+      Galois. And $\sigma \in \Gal(K_s/k)$ lifts to something in $\Aut_k(K)$
+      since $K$ is a splitting field, and this lift must be  unique since, from
+      the argument in the last section, we see that every $\alpha \in K$ has
+      minimal polynomial $(X-\alpha)^{p^n}$ over $K_s$, and so must be fixed by
+      any $\tau \in \Aut_{K_s}(K)$. So $\Gal(K_s/k) \cong \Aut_k(K)$.
+
+   \item We note that a permutation $\sigma$ of the $a_i$ takes $\Delta$ to
+      $\sgn(\sigma)\Delta$. So precisely the even permutation in $G$ fix
+      $\Delta$.
+
+   \item $K = \QQ[\sqrt2,\sqrt[3]3,\zeta]$, where $\zeta$ is a primitive cube
+      root of unity. The Galois group $G$ may permute $\{\pm\sqrt2\}$
+      $\{\zeta^i\sqrt[3]3\}$, and $\{\zeta,\zeta^2\}$. We let
+      $\sigma:\sqrt2\mapsto-\sqrt2$, $\tau:\sqrt[3]3\mapsto\zeta\sqrt[3]3$, and
+      $\psi:\zeta\mapsto\zeta^2$. Then $\sigma$ is central and $\tau\psi =
+      \psi\tau^{-1}$. So $G = \langle \sigma \rangle_2 \times (\langle \tau
+      \rangle_3 \rtimes \langle \psi \rangle_2) \cong C_2 \times S_3$. The
+      Galois subfields correspond to normal subgroups, so are $\QQ$,
+      $\QQ[\zeta]$, $\QQ[\zeta, \sqrt[3]3]$, and each of those with $\sqrt2$
+      adjoined.
+
+\end{enumerate}
+\end{document}
