@@ -1,0 +1,165 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fullpage}
+%\usepackage{mathrsfs}
+
+\newcommand\ZZ{\mathbb Z}
+\newcommand\RR{\mathbb R}
+\newcommand\CC{\mathbb C}
+\newcommand\NN{\mathbb N}
+
+\DeclareMathOperator\im{im}
+
+\title{Analysis Homework 3}
+\author{Mendel Feygelson}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+  \item We know from class that for any $\varepsilon$ there exists a $g : \RR
+     \to \RR$ continuous with compact support such that $\int_\RR |f-g| <
+     \varepsilon$. Let $\lambda$ be the measure of a compact set which supports
+     $g$. $g$ is uniformly continous, so there is a $\delta$ such that
+     $|g(x+h)-g(x)|<\varepsilon$ for $h < \delta$, so $\int_\RR
+     |g(x+h)-g(x)|\,dx < 2\lambda\varepsilon$. So if $h<\delta$, then $\int_\RR
+     |f(x+h)-f(x)|\,dx \leq \int_\RR |f(x+h)-g(x+h)| + \int_\RR |g(x+h)-g(x)| +
+     \int_RR |g(x)-f(x)| < 2(\lambda+1)\varepsilon \to 0$ as $\varepsilon \to
+     0$.
+
+  \item First we want to show that $\phi$ is continuous. We have that
+     $\phi(\lambda(x-y)+y) \leq \lambda(\phi(x)-\phi(y)) + \phi(y)$, so
+     $\frac{\phi(\lambda(x-y)+y)-\phi(y)}\lambda \leq \phi(x)-\phi(y)$.
+     Substituting $\lambda=\frac{z-y}{x-y}$, we get that
+     $\frac{\phi(z)-\phi(y)}{z-y} \leq \frac{\phi(x)-\phi(y)}{x-y}$ for
+     $y < z \leq x$ and $\frac{\phi(z)-\phi(y)}{z-y} \geq
+     \frac{\phi(x)-\phi(y)}{x-y}$ for $y > z \geq x$. So,
+     $\frac{\phi(x)-\phi(y)}{x-y}$ is increasing (nondecreasing) in $x$ for any
+     fixed $y \neq x$, and by symmetry, it's also increasing in $y$ for fixed
+     $x$. So if $x'<x<y<y'$ then $\frac{\phi(x')-\phi(y)}{x'-y} \leq
+     \frac{\phi(x)-\phi(y)}{x-y} \leq \frac{\phi(x)-\phi(y')}{x-y'}$, so
+     $\frac{\phi(x)-\phi(y)}{x-y}$ is bounded for $x$ and $y$ in this range, so
+     $\phi(x)-\phi(y) \to 0$ as $x-y \to 0$.
+
+     Next, suppose $s : X \to \RR$ is a simple function. We claim that
+     $\phi(\int s) \leq \int \phi \circ s$. We proceed by induction on the
+     number of terms of $s$ (that is, $|\im(s)|$). In the base case, $s$ is
+     constant, say $s \equiv a$, then $\phi(\int_X s) = \phi(a) = \int_X \phi(a)
+     = \int_X \phi \circ s$. Suppose $s$ has more than one term. We write $X$ as
+     the disjoint union of two measurable sets $A \cup B$, where $s|_A$ and
+     $s|_B$ are each simple functions with fewer terms than $s$ (that is, fewer
+     values in their images). Then, $\phi(\int_X s) = \phi(\int_A s + \int_B s)
+     = \phi\left(\mu(A) \int_A s \, \frac{d\mu}{\mu(A)} + \mu(B) \int_B s \,
+     \frac{d\mu}{\mu(B)}\right) \leq \mu(A)\phi\left(\int_A s\,
+     \frac{d\mu}{\mu(A)}\right) + \mu(B)\phi\left(\int_B s\,
+     \frac{d\mu}{\mu(B)}\right) \leq \mu(A)\int_A (\phi \circ s) \,
+     \frac{d\mu}{\mu(A)} + \mu(B)\int_B (\phi \circ s) \, \frac{d\mu}{\mu(B)} =
+     \int_X \phi \circ s$, where the second inequality follows by induction
+     because $(A,\frac\mu{\mu(A)})$ and $(B,\frac\mu{\mu(B)})$ are each measure
+     spaces of unit measure on which $s$ is a simple function that has fewer
+     terms.
+
+     Now this is where this proof gets too messy. For $k \in \NN$, we define a
+     simple function $s_k$ as follows: For $n,m \in \ZZ$, $|n|,|m| < k$, let $A
+     = \phi^{-1}[n,n+1] \cap [m,m+\frac1k]$. If $A \neq \varnothing$, we pick $y
+     \in A$ where $\phi$ achieves its maximal value, and define $s_k$ to be $y$
+     on $f^{-1}(A)$. If $x$ is not in any such $A$, we set $s_k(x)=0$.  Then for
+     any $x \in X$, for $k$ sufficiently large, $x$ will be in some $A$, so
+     $|f(x) - s_k(x)| \leq \frac1k$, so $s_k \to f$, and so $\phi \circ s_k \to
+     \phi \circ f$. And we also have that $|s_k| \leq |f|+1$, which is
+     integrable on $X$ since $X$ has finite measure; $|\phi \circ s_k| \leq
+     \max\{|\phi(0)|,|\phi \circ f| + 1\}$; and $\phi \circ s_k \geq \phi \circ
+     s_{k+1} \geq \phi \circ f$ for every $k$.
+
+     Now we compute, $\phi(\int_X f) = \phi(\int_X \lim s_k) = \lim \phi(\int_X
+     s_k) \leq \lim \int_X \phi \circ s_k$. Now if $\int_X \phi \circ f =
+     \infty$, then this value is vacuously $\leq \int_X \phi \circ f = \infty$.
+     If it's finite, we have that $\max\{|\phi(0)|,|\phi \circ f| + 1\}$ is
+     integrable on $X$, so this value is $\int_X \lim \phi \circ s_k = \int_X
+     \phi \circ f$. And if it's $-\infty$, then on $\{\phi \circ f \geq 0\}$,
+     $\phi \circ s_k$ is dominated by an integrable function, and on $\{\phi
+     \circ f < 0\}$, $\phi \circ s_k$ is eventually a monotonically decreasing
+     sequence of negative functions (at least on a set where $\phi \circ f <
+     \varepsilon$ and $\phi \circ s_k$ converges uniformly, but such a set
+     should be arbitrarily large), so again we should get that $\lim \int_X \phi
+     \circ s_k = \int_X \phi \circ f$.
+
+  \item This space intentionally left blank.
+
+  \item Note that by the triangle inequality, we see that refining a partition
+     will increase the total variation on that partition (and so provide a
+     better estimate of the total variation). We set $v_\varepsilon =
+     V(f)_a^{x_0-\varepsilon} + |f(x_0) - f(x_0-\varepsilon)|$, that is the
+     supremum of the variation over all partitions of $[a,x_0]$ whose last two
+     terms are $x_0-\varepsilon < x_0$. Any partition whose last terms are
+     $a_{n-1} < a_n = x_0$, with $a_n - a_{n-1} > \varepsilon$ can be refined to
+     a partition with last terms $x_0-\varepsilon < x_0$, so we thus see that
+     $\lim_{\varepsilon\to0}v_\varepsilon = V(f)_a^{x_0}$. But since $f$ is
+     continuous at $x_0$, we have that $|f(x_0) - f(x_0-\varepsilon)| \to 0$ as
+     $\varepsilon \to 0$, so we get that $V(f)_a^{x} \to V(f)_a^{x_0}$ as $x \to
+     x_0$ from below.
+     
+     Note that for any $x<y<z$, $V(f)_x^y + V(f)_y^z \leq
+     V(f)_x^z$ -- we can see this from the definition of $V$. Thus,
+     $V(f)_x^{x_0} \to 0$ as $x\to x_0$ from below. And by symmetry (consider
+     $g(x)=f(-x)$), we also have that $V(f)_{x_0}^x \to 0$ as $x_0 \to x$ from
+     above. But then $V(f)_a^x \leq V(f)_a^{x_0} + V(f)_{x_0}^x \to
+     V(f)_a^{x_0}$, so $V(f)_a^x \to V(f)_a^{x_0}$ as $x \to x_0$ from above as
+     well.
+     
+  \item Consider the decreasing sequence of values $x_n = \frac2{(2n+1)\pi}$.
+     $|f(x_n)-f(x_{n+1})| = |x_n\sin( (2n+1)\frac\pi2) - x_{n+1}\sin( (2n+3)
+     \frac\pi2)| = \frac1\pi(\frac1{2n+1} + \frac1{2n+3})$. And the sum of such
+     terms diverges as we add more of these values to our partition.
+
+  \item Let $I$ be the indicator function of an interval $[a,b]$. Then $\int
+     I(x)e^{ixt}\,dx = \int_a^b e^{ixt}\,dx = frac1{it}(e^{ibt} - e^{iat}) \to
+     0$ as $t \to \infty$. Now we write $f = g + \tilde f$ where $g$ has compact
+     support and $\int \tilde f < \varepsilon$. Then $|g|$ can be written as the
+     sum of indicator functions (of subsets of a compact interval) $g = \sum
+     I_n$. So $\int g(x)e^{ixt}\,dx = \sum \int I_n(x)e^{ixt}\,dx$. This sum is
+     finite and each of its terms gets arbitrarily small as $t \to \infty$, so
+     $\int g(x)e^{itx}\,dx \to 0$ as $t \to \infty$, so $\int f(x)e^{itx}\,dx
+     \to 0$ as $t \to \infty$.
+
+  \item On the one hand, for any partition $a=x_0<\dotsb<x_n=b$, the total
+     variation over that partition is $\sum |F(x_i)-F(x_{i-1})| = \sum
+     |\int_{x_{i-1}}^{x_i} f| \leq \sum \int_{x_{i-1}}^{x_i} |f| = \int_a^b
+     |f|$. Now, we want to find partitions on which the total variation gets
+     arbitrarily close to $\int_a^b |f|$. Write $f = g + \tilde f$, where
+     $g$ is continuous and $\int |g-\tilde f| < \varepsilon$. $\{g \neq 0\}$ is
+     the countable union of open intervals on each of which $g$ is either
+     non-positive or non-negative.  Choosing the endpoints of these intervals as
+     the points of our partition, we get  $\sum |\int_{x_{i-1}}^{x_i} g| = \sum
+     \int_{x_{i-1}}^{x_i} |g| = \int_a^b |g|$. So if we look at the supremum as
+     we put all the endpoints into our partition, we get total variation $\sum
+     |\int_{x_{i-1}}^{x_i} f| = \sum |\int_{x_{i-1}}^{x_i} g+\tilde f| \geq \sum
+     |\int_{x_{i-1}^{x_i}} g| - \varepsilon = \int_a^b |g| - \varepsilon \geq
+     \int_a^b |f| - 2\varepsilon$.
+
+  \item Firstly, $f$ is integrable because $\int f \cdot 1 \leq C$. Let $\tilde
+     g$ be 1 on $\{f > 0\}$ and $-1$ on $\{f \leq 0\}$. Let $\{f > 0\} = U \cup
+     N$ where $U$ is open and $m(N) < \varepsilon$. We can define a continuous
+     function $g$ which is 1 on $U$ and $-1$ on all of $U^c$ except for a set
+     $M$ with $m(M) < \varepsilon$ (and $|g| \leq 1$ everywhere). Then away from
+     $M \cup N$, we have that $\int |f| = \int fg \leq C$. And we can choose $M$
+     and $N$ small enough that $\int |f|$ on them is arbitrarily small.
+
+  \item By simple algebra, we see that for rational $x$, $f(x) = Cx$, where $C =
+     f(1)$ (we have $f(\frac mn) = mf(\frac1n)$ and $nf(\frac1n)=f(1)$). Now,
+     $\int_a^b f = \sup_{(q,r) \subset (a,b)} \int_q^r f = C(a-b)$ (where $q,r$
+     are rational). So $f(x) = Cx$ almost everywhere. Let $N = \{f(x) \neq
+     Cx\}$. Note that if $x,y \in N^c$, then $x+y \in N^c$, so if $x \in N^c$,
+     then $N - x \subset N$. So if $\alpha \in N$, then $\alpha - N^c \subset
+     N$, but $m(\alpha-N^c) = \infty$ -- a contradiction. So $N = \varnothing$.
+     
+  \item $d(f_n,f) = \int_X \frac{|f_n-f|}{1+|f_n-f|}$. If $d(f_n,f) \to 0$ then
+     clearly $\mu\{|f_n-f|>\varepsilon\} \to 0$. And conversely, if
+     $\mu\{|f_n-f|>\varepsilon\} \to 0$ then the integral over
+     $\{|f_n-f|\leq\varepsilon\}$ is bounded by
+     $\mu(X)\frac\varepsilon{1-\varepsilon} \to 0$ as $\varepsilon \to 0$ and
+     the integral over $\{|f_n-f|>\varepsilon\}$ is bounded by
+     $\mu\{|f_n-f|>\varepsilon\} \to 0$ as $n \to \infty$.
+
+\end{enumerate}
+\end{document}
