@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fullpage}
+%\usepackage{mathrsfs}
+
+\newcommand\ZZ{\mathbb Z}
+\newcommand\RR{\mathbb R}
+\newcommand\CC{\mathbb C}
+\newcommand\QQ{\mathbb Q}
+\newcommand\NN{\mathbb N}
+\newcommand\FF{\mathbb F}
+
+\renewcommand\a[1]{\left\langle#1\right\rangle}
+\renewcommand\b[1]{\left\{#1\right\}}
+
+\DeclareMathOperator\Hom{Hom}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Gal{Gal}
+\DeclareMathOperator\ab{ab}
+
+\title{Algebra Homework 3}
+\author{Mendel Feygelson}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+   \item Let $K = \QQ[\sqrt2,\sqrt{3+\sqrt3}]$. Let $\beta = \sqrt{3+\sqrt3}$.
+      The roots of the minimal polynomial of $\sqrt2$, which are $\pm\sqrt2$ are
+      in $K$. $\beta$ satisfies $(x^2-3)^2=3$, and the other roots of that
+      polynomial are $\pm\sqrt{3\pm\sqrt3}$. So to see that $K$ is normal, and
+      therefore Galois, it suffices to check that $\sqrt{3-\sqrt3} \in K$. It's
+      easy to see that $\sqrt3 \in K$, and so $\sqrt6 \in K$, and this element
+      is just $\sqrt6 - \beta \in K$. So $K/\QQ$ is Galois.
+
+      Let $\sigma$ swap $\{\pm\sqrt2\}$, $\tau$ swap $\{\pm\sqrt{3+\sqrt3}\}$,
+      and $\omega$ swap $\{\sqrt{3\pm\sqrt3}$ (and also their negatives).
+      Writing $\beta' = \sqrt{3-\sqrt3}$, we see that $\langle\omega,\tau\rangle
+      = D_8$, where $\omega\tau = (\beta'\,\beta\,-\beta'\,-\beta)$ is a
+      rotation and $\omega=(\beta'\,\beta)(-\beta'\,-\beta)$ is a reflection.
+      And $\sigma$ is central so the Galois group is $C_2 \times D_8$.
+      
+      Writing $r = \omega\tau$ and $t = \omega$, we find the subgroups of $D_8$:
+      $\a1$, $\a{r}$, $\a{r^2}$, $\a{t}$, $\a{rt}$, $\a{r^2t}$, $\a{r^3t}$,
+      $\a{r^2,t}$, and $\a{r,t}$.
+
+   \item Shamelessly copying from Wikipedia, if we let $k = \FF_p(T,S)$, where
+      $T$ and $S$ are transcendental, and $K = k(t,s)$, where $t^p = T$ and
+      $s^p = S$, then $[K:k] = [K:k(s)][k(s):k] = p^2$. But for every $\alpha
+      \in K$, $\alpha^p \in k$, so $[k(\alpha):k] \leq p$, so this extension has
+      no primitive element. So by the primitive element theorem, there must be
+      infinitely many intermediate fields.
+
+   \item
+      \begin{enumerate}
+         \item It's clear how $\Aut_k(K) \hookrightarrow \Hom_k(K,L)$, so we
+            need to show that $K/k$ is normal if and only if there's nothing
+            else in $\Hom_k(K,L)$, that is, $K$ embeds into every $k$-extension
+            uniquely. Well, if there's some other way to embed $K$ into $L$, say
+            $K' \subset L$, $K' \cong K$. Then, there's some element $\alpha
+            \in K' \setminus K$, and if $f$ is the minimal polynomial of
+            $\alpha$, then $K$ contains some root of $f$ since it's isomorphic
+            to $K'$ but doesn't contain $\alpha$ so is not normal. Conversely,
+            if $K/k$ is not normal, then let $\alpha \in K$ such that its
+            minimal polynomial has a root $\beta$ in $L \setminus K$, where $L$
+            is some extension. Then $k[\beta] \cong k[\alpha]$ can be extended
+            to an different embedding $K \hookrightarrow L$ which contains
+            $\beta$. And this embedding is in $\Hom_k(K,L) \setminus \Aut_k(K)$.
+
+         \item 
+      \end{enumerate}
+
+   \item $k_p$ is perfect since if $f$ is an irreducible polynomial in $k_p[X]$
+      with repeated roots then it's a polynomial over some finite purely
+      inseparable extension of $k$, $K \subset k_p$. So if $\alpha$ is a root of
+      $f$ then $K[\alpha]$ is a finite purely inseparable extension of $k$, so
+      $\alpha \in k_p$, a contradiction since $f$ is irreducible. Conversely, if
+      $k \subset K \subset k_p$ with $K$ perfect, then $k_p$ is separable over
+      $K$. We saw last time that any $\alpha \in k_p$ would have minimal
+      polynomial $(X-\alpha)^{p^n}$ over $k$, where $p$ is the characteristic.
+      So for $\alpha$ to be separable over $K$, we must have that $\alpha \in
+      K$, so $k_p = K$.
+
+   \item By factoring polynomials, we see that every nonconstant polynomial in
+      $k[X]$ has all of its roots in $K$. But then every element of the
+      algebraic closure of $k$ is algebraic over $k$ and so is in $K$. So $K =
+      \overline k$ is algebraically closed.
+
+   \item
+      \begin{enumerate}
+     
+         \item $n\hat\ZZ$ is closed, so we have that $\ZZ/n\ZZ \subset
+            \hat\ZZ/n\hat\ZZ$ is finite and dense, and $\hat\ZZ/n\hat\ZZ$ is
+            Hausdorff, so $\hat\ZZ/n\hat\ZZ = \overline{\ZZ/n\ZZ} = \ZZ/n\ZZ$.
+
+         \item Since they have finite index, the subgroups given by $n\hat\ZZ$
+            are both open and closed.
+
+      \end{enumerate}
+
+   \item 
+
+      \begin{enumerate}
+         \item $k^{\ab}$ is clearly Galois since it's the limit of Galois
+            extensions. So then it suffices to show that $\Gal(\bar k_s /
+            k^{\ab}) = \overline{G_k'}$, or that $k^{\ab}$ is the fixed field of
+            $G_k'$. And this is true because a normal extension is abelian
+            precisely when it's fixed by the commutator, and every extension is
+            contained in a normal extension.
+
+         \item $\QQ^{\ab}$ is obtained by adjoining all roots of unity, so the
+            Galois group is just $\varprojlim (\ZZ/n\ZZ)^\times$.
+      \end{enumerate}
+
+   \item 
+
+      \begin{enumerate}
+         \item Let $S$ be such a basis. Then $\CC = \overline{\QQ(S)}$.  Assume
+            $S$ is infinite for simplicity. Then one can estimate $|\QQ(S)| \leq
+            |\QQ \times S \times \NN| = |S|$. And $|\overline{\QQ(S)}| \leq
+            |\QQ(S) \times \NN| \leq |S|$. So $|\CC| = |S|$. (If it's finite, we
+            can see that $|\overline{\QQ(S)}| \leq |\overline{\QQ(\NN)}| = |\NN|
+            < |\CC|$).
+
+
+         \item Any permutation of a transcendence basis can be extended to an
+            automorphism over $\QQ$, and clearly the permutation group of an
+            uncountable set is uncountable.
+      
+      \end{enumerate}
+
+\end{enumerate}
+\end{document}
