@@ -1,0 +1,103 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fullpage}
+\usepackage{mathrsfs}
+
+\newcommand\ZZ{\mathbb Z}
+\newcommand\RR{\mathbb R}
+\newcommand\CC{\mathbb C}
+
+\newcommand\C{\mathscr C}
+\newcommand\F{\mathscr F}
+
+\title{Analysis Homework 4}
+\author{Mendel Feygelson}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+  \item 
+  \item
+  \item If $\int f_n \not\to \int f$, then there must be some $\varepsilon$ such
+     that $|\int f_n - \int f| > \varepsilon$ for infinitely many $n$. So this
+     gives us a sequence of functions whose integrals are all at least
+     $\varepsilon$ away from $\int f$. But this sequence converges to $f$ in
+     measure, so it must have a subsequence which converges to $f$ almost
+     everywhere. So if the $f_n$ are dominated by some integrable $g$, then by
+     the dominated convergence theorem, the integrals of this subsequence must
+     converge to $\int f$ -- a contradiction.
+
+  \item
+
+     If $f$ is continuous then $f$ is uniformly continuous, so for every
+     $\varepsilon>0$, there is some $n$ such that whenever $|x-y| < \frac1n$,
+     $|f(x) - f(y)| < \varepsilon$. So on the interval $[\frac{i-1}n,\frac in]$,
+     $|f(x) - f(\frac in)| < \varepsilon$. So $\displaystyle{\left|\int_{\frac{i-1}n}^{\frac in}
+     f(x) \, dx  - \int_{\frac{i-1}n}^{\frac in} f(x) \,\mu_n(dx)\right| =
+     \left|\int_{\frac{i-1}n}^{\frac in} f(x) - f(\frac in) \,dx\right| \leq
+     \int_{\frac{i-1}n}^{\frac in} |f(x) - f(\frac in)| < \frac\varepsilon n}$.
+     So $|\int_0^1 f(x)\,dx - \int_0^1 f(x) \,\mu_n(dx)| < \varepsilon$. So the
+     first equality holds. However, if we take any function with nonzero
+     integral, and modify it to be zero on the rationals, then the integral with
+     respect to $\mu_n$ will always be zero while the Lebesgue integral won't
+     change.
+
+  \item By Fatou's Lemma, we have that $\int_A f \leq \liminf \int_A f_n$, so
+     eventually $\int_A f_n \geq (\int_A f) - \varepsilon$ for all
+     $\varepsilon$. So if $\int_A f_n \not\to \int_A f$, it must be that for
+     some $\varepsilon$, $\int_A f_n > (\int_A f) + \varepsilon$ for infinitely
+     many $n$. But we also have that by Fatou's Lemma, eventually $\int_{A^c}
+     f_n \geq (\int_{A^c} f) - \frac\varepsilon2$, and so $\int_X f_n > (\int_X
+     f) + \frac\varepsilon2$ for infinitely many $n$ -- a contradiction.
+
+  \item $E \mapsto \int_E f \,d\mu$ is an absolutely continuous measure on
+     $(X,\C,\mu)$, so by Radon-Nikodym there is a unique integrable function $g$
+     on $(X,\C,\mu)$ such that $\int_E f \,d\mu = \int_E g \, d\mu$ for all $E
+     \in \C$.
+      
+   \item Since $F$ is absolutely continuous, the Borel measure defined by
+      $\nu(a,b) = F(b) - F(a)$ is absolutely continuous with respect to the
+      standard Borel measure, so there's a function $f$ such that for every
+      interval $(a,x)$, $F(x) - F(a) = \int_a^x f(t) \, dt$.
+
+   \item Suppose $B_i$ are disjoint Borel sets. $\mu_f(\bigcup B_i) =
+      \mu(f^{-1}(\bigcup B_i)) = \mu(\bigcup f^{-1}(B_i)) = \sum
+      \mu(f^{-1}(B_i)) = \sum \mu_f(B_i)$. So $\mu_f$ is a measure.
+
+      Now, $\int_\RR x\,\mu_f(dx) = \sup\{\sum a_i \mu(f^{-1}(A_i)) : A_i
+      \subset \RR \textrm{ disjoint}, x \geq a_i \forall x \in A_i \} =
+      \sup\{\sum a_i \mu(f^{-1}(A_i)) : f^{-1}(A_i) \subset X \textrm{ disjoint},
+      f(x) \geq a_i \forall x \in f^{-1}(A_i)\} \leq \int_X f \, d\mu$. Now,
+      since $f$ is integrable, $\mu(|f|>N) \to 0$ and $\int_{\{|f|>N\}}
+      |f|\,d\mu \to 0$. So if we fix $\varepsilon>0$, we can get an $N$ such
+      that $\int_{\{|f|>N\}} |f|\,d\mu < \varepsilon$. Now, say $\mu(\frac N2 <
+      |f| \leq N) = M$. We partition $\pm(\frac N2,N]$ into intervals of size
+      $\frac\varepsilon{2M}$, and define a simple function $s$ which on each of
+      these intervals $(a,b]$ takes the values $a$. Then $\int_\RR s\,d\mu_f =
+      \sum a \mu(f^{-1}(a,b]) = \sum \int_{\{a<f\leq b\}} a\,d\mu \geq \sum
+      \int_{\{a<f\leq b\}} f-\frac\varepsilon{2M}\,d\mu = \int_{\frac N2<|f|\leq
+      N} f \,d\mu - \frac\varepsilon2$. We continue in this way, defining a
+      simple function on $\pm(\frac{N}{2^i},\frac{N}{2^{i-1}}]$ which is less
+      than the identity function and whose $\mu_f$ integral is greater than the
+      integral of $f$ on $\{\frac{N}{2^i}<|f|\leq\frac{N}{2^{i-1}}$ minus
+      $\frac\varepsilon{2^i}$.  Adding all of these simple functions up gives us
+      a function on $\RR$ which is less than the identity function and whose
+      $\mu_f$ integral is greater than the integral of $f$ minus $2\varepsilon$,
+      so the two integrals are equal.
+
+   \item This assumes $\sigma$-finiteness, but we can compute that $\int_X
+      fg\,d\mu = \int_X f(x) \int_0^{g(x)} 1 \,dz\,\mu(dx) = \int_X
+      \int_0^{g(x)} f(x) \,dz\,\mu(dz) = \int_{\{(x,z):x \in X, 0 \leq z \leq
+      g(x)\}} f(x) \,d(\mu \times m) = \int_0^\infty \int_{\{g \geq z\}} f
+      \,d\mu\,dz$.
+
+   \item We see that it's true on intervals -- if $\mu_f$ is positive on $[a,b]$
+      then $f$ is increasing on $[a,b]$, so $V_{a'}^{b'}(f) = f(b')-f(a')$ for
+      any $[a',b'] \subset [a,b]$, so $V^-(f) = 0$ on $[a,b]$, so $\mu_{V^-}$ is
+      null on $[a,b]$, and similarly when $\mu_f$ is negative. And so since a
+      Borel measure is determined by its values on intervals, we see that this
+      is the Jordan decomposition.
+
+\end{enumerate}
+\end{document}
