@@ -148,11 +148,11 @@
       rapidly near some point $x$, a function $g$ could remain constant in a
       $\delta$-neighborhood of $x$ and still be within $\delta$ Hausdorff
       distance. For example, if $f_n : \RR \to \RR$ takes $x \mapsto nx$, we can
-      define $g_\delta(x) = \begin{cases} 0 & |x| < \frac\delta2 \\
-         f(\delta)\frac{2|x|-\delta}\delta & \frac\delta2 \leq |x| < \delta
-         \\ f(x) & x \geq \delta \end{cases}$. Then $g_\delta \in B(f_n,\delta)$
-      for all $n$, but as $n$ gets large, $|f(\frac\delta2) -
-      g_\delta(\frac\delta2)| = \frac{n\delta}2 \to \infty$, so $g_\delta
-      \not\in B_1(f_n,\varepsilon)$.
+      define $g_{\delta,n}(x) = \begin{cases} 0 & |x| < \frac\delta2 \\
+         f_n(\delta)\frac{2|x|-\delta}\delta & \frac\delta2 \leq |x| < \delta
+         \\ f_n(x) & x \geq \delta \end{cases}$. Then $g_{\delta,n} \in
+      B(f_n,\delta)$, but as $n$ gets large, $|f(\frac\delta2) -
+      g_{\delta,n}(\frac\delta2)| = \frac{n\delta}2 \to \infty$, so
+      $g_{\delta,n} \not\in B_1(f_n,\varepsilon)$.
 \end{enumerate}
 \end{document}
