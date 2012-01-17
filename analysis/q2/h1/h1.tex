@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fullpage}
+\usepackage{mathrsfs}
+
+\newcommand\ZZ{\mathbb Z}
+\newcommand\RR{\mathbb R}
+\newcommand\CC{\mathbb C}
+\newcommand\F{\mathscr F}
+
+\title{Functional Analysis Homework 1}
+\author{Mendel Feygelson}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+  \item Okay.
+
+  \item If $X$ is sequentially compact, suppose we have a countable cover
+     $\{U_n\}$ with no finite subcover. Then, like in the chapter, we can pick a
+     sequence $\{x_n\}$ such that $x_n \not\in U_1,\dotsc,U_n$ for each $n$.
+     This sequence must have an accumulation point $\bar x$ such that every
+     neighborhood of $\bar x$ contains infinitely many $x_n$. But this is
+     impossible since $\bar x$ must be contained in some $U_N$, and then for
+     every $n > N$, we must have $x_n \not\in U_N$ by construction. So $X$ must
+     be countably compact.
+
+     Conversely, suppose $X$ is countably compact and $\{x_n\}$ is a sequence in
+     $X$. Let $U_n = X \setminus \overline{\{x_i : i > n \}}$. $\{U_n\}$ can't
+     have a finite subcover since its complement has the finite intersection
+     property, so it can't be a cover. So there is some $\bar x \in \bigcap_n
+     \overline{\{x_i : i > n\}}$, so any neighborhood $U$ of $\bar x$ contains
+     some $x_i$, $i > n$, for any $n$ -- so $\bar x$ is a cluster point of
+     $\{x_i\}$. If $X$ is first countable, then we can let $V_n$ be a (nested)
+     neighborhood basis of $\bar x$. Then we can pick $x_{j_n} \in V_n$ so that
+     $x_{j_n} \to \bar x$.
+
+  \item \begin{enumerate}
+        \item Suppose $\F$ is an equicontinuous family of functions from a
+           compact Hausdorff space $X$ to a complete metric space $Y$ such that
+           for every $x \in X$, $\F(x) \subset Y$ is totally bounded. We claim
+           that $\F$ is totally bounded in the uniform metric.
+
+           The proof is the same. We cover $X$ by finitely many open $U_j$
+           neighborhoods of $x_j$ such that $d(x_j,y) < \frac{\varepsilon}{4}$
+           for any $y \in U_j$. Then $\bigcap_j \F(x_j)$ is totally bounded, so
+           there are finitely many $z_k$ that are $\frac{\varepsilon}{4}$-dense.
+
+           Let $A = \{x_j\}$, $B = \{z_k\}$. For $\phi \in B^A$, let $\F_\phi$
+           as before, so that the $\F_\phi$ cover $\F$, and by the same
+           argument, $\F_\phi$ has diameter $<\varepsilon$, so $\F$ is totally
+           bounded.
+
+           Finally, since $C(X,Y)$ is complete, $\F$ is precompact.
+
+        \item Let $\F = \{Tf : \|f\|_u \leq 1\}$. For $x \in [0,1]$, $|Tf(x)| =
+           |\int_0^1 K(x,y)f(y)\,dy| \leq \int_0^1 |K(x,y)f(y)|\,dy \leq \sup_y
+           |K(x,y)|$ for $Tf \in \F$ since $\|f\| \leq 1$. So $\F$ is pointwise
+           bounded.
+
+           And $|Tf(x) - Tf(x')| = |\int_0^1 (K(x,y)-K(x',y))f(y)\,dy| \leq
+           \int_0^1 |K(x,y)-K(x',y)|\,dy$. $K$ is uniformly continuous, so there
+           is a $\delta$ such that $|K(x,y)-K(x',y')| < \varepsilon$ whenever
+           $d( (x,y), (x',y')) < \delta$. So in particular, if $|x-x'| <
+           \delta$, then $|Tf(x) - Tf(x')| < \int_0^1 \delta \leq \delta$, for
+           any $Tf \in \F$. So $\F$ is equicontinuous and so $\F$ is precompact.
+
+        \item Let $\F = \{f \in C(X) : \|f\|_u \leq 1 \textrm{ and } N_\alpha(f)
+           \leq 1\}$. Clearly $\F$ is bounded, and if $\rho(x,x') <
+           \varepsilon^{\frac1\alpha}$ then $|f(x) - f(x')| < \varepsilon$ for
+           any $f \in \F$, so $\F$ is equicontinuous. And $\F$ is closed since
+           if $f_n \to f$ uniformly with $N_\alpha(f_n)\leq1$ then $N_\alpha(f)
+           = \sup_{x \neq y} \frac{|f(x)-f(y)|}{\rho(x,y)^\alpha}$ and
+           \[\frac{|f(x)-f(y)|}{\rho(x,y)^\alpha} \leq \frac{|f(x) - f_n(x)| +
+           |f_n(x) - f_n(y)| + |f_n(y) - f(y)|}{\rho(x,y)^\alpha} \leq 1\] as $n
+           \to \infty$. So $\F$ is compact.
+     \end{enumerate}
+
+\end{enumerate}
+
+\pagebreak
+\noindent Additional Problems:
+\begin{enumerate}
+   \item A metric space is totally bounded if for every $\varepsilon$ there
+      exists a finite $\varepsilon$-dense set of points. A topological space is
+      separable if it has a countable dense subset. A compact metric space is
+      totally bounded since for every $\varepsilon$ we can cover it with
+      $\varepsilon$-balls and so since it's compact we can cover it with
+      finitely many $\varepsilon$-balls. If we fix a finite $\frac1n$-dense
+      subset for every $n$ and take their union then we have a countable dense
+      subset, so a compact metric space is also separable.
+
+   \item Let $M(x) = \sup_{f \in \F} |f(x)|$. First, if $M(x) < \infty$ then $M$
+      is finite everywhere since if $|f(x')-f(x'')| < \varepsilon$ whenever
+      $d(x',x'') < \delta$ for every $x',x'' \in X, f \in \F$ then for every
+      $x'$ within $N\delta$ of $x$, $M(x') \leq M(x) + N\varepsilon < \infty$.
+      So $\F$ is pointwise bounded if it's bounded anywhere. And $M$ is
+      continuous -- if $d(x,x') < \delta$ then $M(x') < M(x) + \varepsilon$ and
+      since there's some $f \in \F$ such that $|f(x)| > M(x) - \varepsilon$,
+      $M(x') \geq |f(x')| > M(x) - 2\varepsilon$. So if $X$ is compact then if
+      $\F$ is bounded anywhere then $\F$ is uniformly bounded.
+
+   \item $C(X)$ is a metric space and $\{f_n,f\}$ is sequentially compact under
+      the uniform metric, and therefore compact. If we let
+      $\omega_\varepsilon(f) = \min\{1,\sup\{\delta : |f(x) - f(x')| <
+         \varepsilon \textrm{ whenever } d(x,x') < \delta \}\}$ then
+      $\omega_\varepsilon$ is continuous under the uniform metric so any set of
+      functions which is compact under the uniform metric is equicontinuous.
+
+   \item For a H\"older continuous function $f$, the modulus of continuity is
+      $\omega(\delta) = N_\alpha(f)\delta^\alpha$.
+      
+      If a family of functions has a fixed modulus of continuity which goes to
+      zero at zero, then for any $\varepsilon$, we can find a $\delta$ such that
+      for every $t<\delta$, $\omega(t) < \varepsilon$, so the family is
+      equicontinuous.  Conversely, if a family is equicontinuous, we define
+      $\omega(t) = \displaystyle\sup_{\substack{f \in \F \\ d(x,x') \leq t}}
+      |f(x) - f(x')|$. Then $\omega \to 0$ at zero since $\F$ is equicontinuous.
+      And $\omega$ is continuous since $\omega$ is increasing and
+      $\omega(t+\delta) \leq \omega(t)+\omega(\delta) \to \omega(t)$ as $\delta
+      \to 0$. And a uniformly continuous function is the same thing as an
+      equicontinuous family of functions with only one element, so the last
+      statement follows.
+
+   \item $\{\sin nx\}$ is not equicontinuous since for any $\delta>0$, there is
+      an $n$ such that $|\frac{3\pi}{2n} - \frac{\pi}{2n}| = \frac\pi{n} <
+      \delta$, but $|\sin(n\frac{3\pi}{2n}) - \sin(n\frac{\pi}{2n})| = 2 >
+      \varepsilon$.  $\{\frac{\sin n^2x}n\}$ is equicontinuous since for any
+      $\varepsilon$, all but finitely many functions in the family are bounded
+      by $\frac\varepsilon2$, while the rest are uniformly continuous, so the
+      minimum of the $\delta$s which work for the finitely many functions which
+      are ever greater than $\frac\varepsilon2$ will work for the whole family.
+
+   \item If $d_1(f,g) < \varepsilon$, then $d( (x,g(x)), (x,f(x))) =
+      d_Y(f(x),g(x)) < \varepsilon$, so the graph of $g$ is within the
+      $\varepsilon$-tube of the graph of $f$ and vice versa, so
+      $B_1(f,\varepsilon) \subset B(f,\varepsilon)$. And for any
+      $\varepsilon>0$, if we pick $\delta<\frac\varepsilon2$ such that whenever
+      $d_X(x,x') < \delta$, $d_Y(f(x),f(x')) < \frac\varepsilon2$, then if
+      $d_H(f,g) < \delta$, then for any $x$, there's some $x'$ such that $d(
+      (x,g(x)), (x',f(x'))) < \delta$. This means that $d_X(x,x') < \delta$ and
+      $d_Y(g(x),f(x')) < \delta$. So $d_Y(f(x),g(x)) \leq d_Y(f(x),f(x')) +
+      d_Y(f(x'),g(x)) < \frac\varepsilon2 + \delta < \varepsilon$. So $d_1(f,g)
+      < \varepsilon$.
+      
+      We cannot choose $\delta$ independently of $f$ because even if $f$ changes
+      rapidly near some point $x$, a function $g$ could remain constant in a
+      $\delta$-neighborhood of $x$ and still be within $\delta$ Hausdorff
+      distance. For example, if $f_n : \RR \to \RR$ takes $x \mapsto nx$, we can
+      define $g_\delta(x) = \begin{cases} 0 & |x| < \frac\delta2 \\
+         f(\delta)\frac{2|x|-\delta}\delta & \frac\delta2 \leq |x| < \delta
+         \\ f(x) & x \geq \delta \end{cases}$. Then $g_\delta \in B(f_n,\delta)$
+      for all $n$, but as $n$ gets large, $|f(\frac\delta2) -
+      g_\delta(\frac\delta2)| = \frac{n\delta}2 \to \infty$, so $g_\delta
+      \not\in B_1(f_n,\varepsilon)$.
+\end{enumerate}
+\end{document}
