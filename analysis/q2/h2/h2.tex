@@ -1,0 +1,175 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fullpage}
+\usepackage{mathrsfs}
+\usepackage{xparse}
+\usepackage{eucal}
+
+\newcommand\ZZ{\mathbb Z}
+\newcommand\RR{\mathbb R}
+\newcommand\CC{\mathbb C}
+\newcommand\NN{\mathbb N}
+
+\newcommand\Y{\mathcal Y}
+\newcommand\X{\mathcal X}
+\newcommand\M{\mathcal M}
+\newcommand\A{\mathcal A}
+
+\let\ib\item
+%\renewcommand\item[1]{\ib[#1\hspace{1pt})]}
+\DeclareDocumentCommand \item o
+   {\IfValueTF {#1}
+      {\ib[#1\hspace{1pt})]}
+      \ib
+   }
+
+\title{Functional Analysis Homework 2}
+\author{Mendel Feygelson}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+   \item[2] Firstly, $\frac{\|Tx\|}{\|x\|} =
+      \left\|T\left(\frac{x}{\|x\|}\right)\right\|$ so the two sets over which
+      the supremum is taken in the first two definitions of the operator norm
+      are equal. And for every $x$, $\|Tx\| \leq \sup\{\frac{\|Tx'\|}{\|x'\|} :
+      x' \neq 0 \}\|x\|$, so the third definition is $\leq$ the second, while
+      clearly for any $x$, $\frac{\|Tx\|}{\|x\|} \leq C$ for any $C$ satisfying
+      the constraint in the third definition, so the second definition is $\leq$
+      the third. And so all three definitions of operator norm are equivalent.
+
+      Clearly $\|\lambda T\| = |\lambda|\|T\|$ since he $\|\lambda Tx\| =
+      |\lambda|\|Tx\|$ for every $x$. And $\|Tx + Sx\| \leq \|Tx\| + \|Sx\|$, so
+      the triangle inequality also follows from the triangle inequality on $\Y$.
+
+   \item[3] $T$ is linear since $T(\lambda x+y) = \lim \lambda T_nx+T_ny =
+      \lambda \lim T_nx + \lim T_ny$. For every $x$ such that $\|x\|=1$, $\|Tx\|
+      = \|\lim T_nx\| = \lim \|T_nx\|$, so $\|T\| = \lim \|T_n\|$. And
+      $\|T_n-T\| \to 0$ since if $\|T_nx-T_mx\| < \varepsilon$ for every
+      $n,m>N$, then $\|T_nx - \lim T_mx\| \leq \varepsilon$.
+
+   \item[4] We have that $T_nx_m \to Tx_m$ uniformly in $m$, and $Tx_m \to Tx$,
+      so as both $n,m \to \infty$, $T_nx_m \to Tx$.
+      
+   \item[7] \begin{enumerate}
+         \item It's clear that the given series converges, and denoting its
+            limit by $S$, we see that $S$ has the property that $(I-T)S = S(I-T)
+            = S - I$, or $S - TS = S - ST = S-I$. So $TS = ST = I$.
+
+         \item We have $\|T^{-1}S - I\| < \|T^{-1}\|\|S-T\| < 1$, so $T^{-1}S$
+            is invertible, and $(T^{-1}S)^{-1}T^{-1} = S^{-1}$.
+      \end{enumerate}
+
+   \item[9] \begin{enumerate}
+         \item I show that the one-sided derivative of $f$ exists at 0 and is
+            equal to $\lim_{x \to 0} f'(x)$; then the rest follows by symmetry
+            and induction. Let $t_n \to 0$. Then by the mean value theorem,
+            there exists an $x_n \in (0,t_n)$ such that $f'(x_n) =
+            \frac{f(t_n)-f(0)}{t_n}$. $x_n \to 0$ since $x_n < t_n$, so
+            $\frac{f(t_n)-f(0)}{t_n} \to \lim_{x \to x} f'(x)$ as $t_n \to 0$.
+
+         \item Suppose $f_n \to f$ in this norm. Then $f_n^{(j)} \to f^{(j)}$
+            uniformly for every $j = 0,\dotsc,k$. Let $g = \lim f_n'$. By
+            induction, say $g$ is $C^{k-1}$. So all that we have to show is that
+            $f' = g$. But $f_n(x) - f_n(0) = \int_0^x f_n'$, so $f(x) - f(0) =
+            \int_0^x g$ by dominated convergence. So $f' = g$ by FTC.
+      \end{enumerate}
+
+   \item[10] I think the same argument as in Exercise 9 shows that if $f_n \to
+      f$ under this norm then $f_n^{(j)} \to f^{(j)}$ uniformly. Then all one
+      needs is that the uniform limit of absolutely continuous functions is
+      absolutely continuous, and that's probably true.
+
+   \item[11] \begin{enumerate}
+         \item 
+      \end{enumerate}
+
+   \item[17] Let $\M = f^{-1}(0)$. Exercise 12 shows that the projection $\X \to
+      \X/\M$ is continuous. $f$ descends to a linear map $\X/\M \to \CC$. But
+      since $\X/\M$ is one-dimensional, $f$ must be bounded.
+
+   \item[18] \begin{enumerate}
+         \item Consider the projection $\X \xrightarrow\pi \X/\M$. The subspace
+            $\M + \CC x \subset \X/\M$ is one-dimensional and so clearly closed.
+            And so $\pi^{-1}(\M + \CC x)$ is also closed.
+         \item Follows from (a) and induction.
+      \end{enumerate}
+
+   \item[19] \begin{enumerate}
+         \item If we have $x_1,\dotsc,x_n$ satisfying the given properties, let
+            $\M$ be the subspace spanned by these vectors. Then $\M$ is closed,
+            so 12b gives us an $x_{n+1}$ such that $\|x_{n+1}\| = 1$ and
+            $\|x_{n+1} + \M\| \geq \frac12$.
+
+         \item Part (a) shows that the unit ball is not compact, and every
+            neighborhood in $\X$ is homeomorphic to the unit ball, so is also
+            not compact.
+
+      \end{enumerate}
+
+   \item[22] \begin{enumerate}
+         \item $\|T^\dagger\| = \sup \{\|f \circ T\| : \|f\| = 1\} = \sup
+            \{\|f(T(x))\| : \|f\| = 1, \|x\| = 1\|\} = \sup \{\|T(x)\| : \|x\| =
+            1\} = \|T\|$, by Theorem 5.8(b).
+
+         \item If $T^{\dagger\dagger}(\widehat x) = \widehat x \circ T^\dagger =
+            \alpha$, then $\alpha(f) = \widehat x(T^\dagger(f)) = \widehat x(f
+            \circ T) = f(T(x))$, so $\alpha = \widehat{T(x)}$.
+
+         \item If the range of $T$ is dense in $\Y$, then if $f \circ T = 0$,
+            then $f$ is 0 on a dense set, so $f = 0$ since $f$ is continuous.
+            Conversely, if the range of $T$ is not dense in $Y$, then if $\M$ is
+            the closure of the range of $T$, then we can find nonzero $f$ which
+            is zero on $\M$, so $f$ is in the kernel of $T^\dagger$.
+
+         \item If $T^\dagger$ is dense in $\X^*$, then every $f \in \X^*$ is the
+            limit of functionals of the form $f_n \circ T$. So if $x \in \ker
+            T$, then $f(x) = \lim f_n(T(x)) = 0$, so $x = 0$.
+
+            If $\X$ is reflexive and $T$ is injective, then $T^{\dagger\dagger}
+            = T$ is injective, so the range of $T^\dagger$ is dense in $\X^*$ by
+            part (c).
+      \end{enumerate}
+
+   \item[29] \begin{enumerate}
+         \item For any $f \in \Y$, the functions $f_n(m) =
+            \begin{cases}f(m)&m<n\\0&m\geq n\end{cases}$ converge to $f$. And
+            $\X$ contains all  such functions, so $\X$ is dense in $\Y$. However
+            $\X$ doesn't contain $\frac1{n^2}$, so $\X$ is a proper subspace.
+
+         \item Converging in $\Y$ requires converging pointwise, and so if $f_j
+            \to f$ and $Tf_j \to g$ then $nf_j(n) \to g(n)$ so $g(n) = nf(n)$,
+            so $g = Tf$. And $\Y$ is complete, so $Tf \in \Y$, so $f \in \X$. So
+            $T$ is closed.
+
+            However, if $f_r(n) = \frac{r^n}{n}$, then $\frac{\|Tf_r\|}{\|f_r\|}
+            = \frac{\frac{r}{1-r}}{\log(\frac{1}{1-r})} \to \infty$ as $r \to 1$
+            (from below), so $T$ is not bounded.
+
+         \item $S$ is surjective since it has an inverse and bounded since
+            $\|Sf\| \leq \|f\|$, but isn't open since $T$ isn't continuous.
+      \end{enumerate}
+
+   \item[30] \begin{enumerate}
+         \item If $f_n(x) = |x-\frac12|e^{\frac{-1}{n|x-\frac12|}}$, and 0 at
+         $\frac12$, then $f_n(x)$ is $C^1$, but $\lim f_n(x) = |x-\frac12|$ is
+         not $C^1$.
+
+         \item That $\frac{d}{dx}$ is closd is precisely the hint in $9(b)$. But
+            $\frac{d}{dx}$ is not bounded since $\|\sin(nx)\| = 1$ but
+            $\|\frac{d}{dx}\sin(nx)\| = \|n\cos(nx)\| = n$ (at least for $n >
+            \pi$).
+      \end{enumerate}
+
+   \item[33] As in 29, we have that $T$ is closed, but since now $B(\NN)$ is a
+      Banach space, this gives us that $T$ is bounded. And $T$ is bijective, so
+      $T$ is an isomorphism. But the set of $f$ which are zero on all but
+      finitely many $n$ is not dense in $B(\NN)$, but its image is dense in
+      $L^1(\mu)$, so $T$ cannot be an isomorphism.
+
+   \item[38] By the uniform boundedness principle, $\sup \|T_n\| < \infty$. Let
+      $M = \sup \|T_n\|$. Then for $x$ of unit length, $\|Tx\| = \|\lim T_nx\|
+      \leq \|\sup T_nx\| \leq M$.
+\end{enumerate}
+\end{document}
