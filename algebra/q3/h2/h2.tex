@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fullpage}
+%\usepackage{mathrsfs}
+
+\newcommand\ZZ{\mathbb Z}
+\newcommand\RR{\mathbb R}
+\newcommand\CC{\mathbb C}
+\DeclareMathAlphabet{\mathscr}{OT1}{pzc}{m}{it} 
+
+\title{Algebra Homework 2}
+\author{Mendel Feygelson}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+   \item Let $R$ be a semisimple ring, $L$ a left ideal. Write $R = L \oplus
+      L'$. Let $\pi : R \to L$ be the projection. $\pi$ is an $R$-endomorphism,
+      so $\pi(a) = a\pi(1)$. So $L = R\pi(1)$.
+
+   \item This is the same as the number of maximal left ideals. Note that the
+      set of matrices with zeros on the diagonal is a nilpotent ideal and
+      therefore contained in every maximal ideal, and that units aren't
+      contained in any maximal ideal. This leaves
+      $\left\{\begin{pmatrix}*&*\\0&0\end{pmatrix}\right\}$ and
+      $\left\{\begin{pmatrix}0&*\\0&*\end{pmatrix}\right\}$ as the only
+      candidates, and a computation shows that they are in fact left ideals. So
+      there are two simple non-isomorphic left $A$-modules.
+
+   \item If the generators are $x_1,\dotsc,x_n$, then each $x_j$ can be written
+      as $x_j = \sum m_i$ with $m_i \in M_i$ and only finitely many $m_i$
+      nonzero. If we let $\{m_\alpha\}$ be the set of all summands $m_i$ that
+      show up in this manner over all $x_j$, then there are only finitely many
+      $m_\alpha$ and every $m \in M$ can be written as a linear combination of
+      the $m_\alpha$. Only finitely many $M_i$ contain an $m_\alpha$, and if $M_i$
+      doesn't contain any $m_\alpha$, then $M_i \subset M \subset \sum_{j \neq
+      i} M_j = M'$, but $M_i \cap M' = 0$, so $M_i = 0$. So only finitely many
+      $M_i$ are nonzero.
+
+   \item Let $\pi_1$ be the projection to the first component, $\pi_2$ be the
+      projection to the second component. Suppose $x \in pi_1(J)$ and $y \in
+      \pi_2(J)$. So $(x,x') \in J$ and $(y',y) \in J$ for some $x'$ and $y'$.
+      Then $(x,y) = (1,0) \cdot (x,x') + (0,1) \cdot (y',y) \in J$. So if $I =
+      \pi_1(J)$ and $I' = \pi_2(J)$ -- left ideals -- then $J = I \times I'$.
+      
+   \item The point is that everything outside the ideal $(x)$ is a unit. If $f
+      \in k[ [x] ]$ has a non-zero constant term, divide by the constant term to
+      get $f = 1 + a_1x + a_2x^2+\dotsb$. Then $(1-a_1x)f$ is a power series
+      with a unit constant term an no linear term. Say $(1-a_1x)f = 1 + a_2'x^2
+      + a_3'x^3+\dotsb$. Then $(1-a_1x-a_2'x^2)f$ is a power series with a unit
+      constant term and no linear or quadratic coefficients. We can continue
+      this process inductively to obtain an inverse for $f$.
+
+      So $(x)$ is the unique maximal ideal in $k[ [x] ]$.
+
+   \item Let $q = |G|$. If $g,h \in G$, then $(g-h)^q = g^q-h^q = 1-1 = 0$.
+      Clearly $(g'(g-h))^q = (g'g-g'h)^q = 0$ and since taking the $q$th power
+      distributes, linear combinations of such terms also have $q$th power zero.
+      So $\sum_{g \in G} k[G](g-1)$ is a nilpotent ideal and thus contained in
+      the Jacobson radical.
+
+      If $V \neq 0$, then $V$ contains a simple submodule (if $0 \neq v \in V$,
+      then $k[G]v$ is finite-dimensional over $k$, so we can pick a minimal
+      submodule). Call it $S$. But the Jacobson radical kills $S$. So $gx-x =
+      (g-1)x = 0$ for every $x \in S$ and $g \in G$.
+
+   \item $k[G]/Rad(k[G]) \cong k$ since all elements of $G$ are identified
+      modulo the radical. So the radical is a maximal ideal and therefore the
+      unique maximal ideal.
+\end{enumerate}
+\end{document}

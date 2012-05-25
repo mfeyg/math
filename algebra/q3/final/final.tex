@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{fullpage}
+%\usepackage{mathrsfs}
+
+\DeclareMathAlphabet{\mathscr}{OT1}{pzc}{m}{it} 
+\newcommand\ZZ{\mathbb Z}
+\newcommand\RR{\mathbb R}
+\newcommand\CC{\mathbb C}
+\newcommand\M{\mathscr M}
+
+\title{Algebra Final Exam}
+\author{Mendel Feygelson}
+
+\begin{document}
+\maketitle
+\begin{enumerate}
+
+   \item \begin{enumerate}
+         \item If $x$ is left invertible with left inverse $y$ then
+            $r_x(ay)=ayx=a$ for $a \in A$, so $r_x$ is surjective. Conversely,
+            if $r_x$ is surjective, then let $r_x(y) = 1$, then $yx = 1$, so $y$
+            is the left inverse of $x$.
+         \item If $x$ is invertible, and $yx = y'x$, then clearly $y = yxx^{-1}
+            = y'xx^{-1} = y'$, so $r_x$ is injective. Conversely, suppose $r_x$
+            is bijective. $r_x^{-1}$ is an endomorphism of $A$ --
+            $r_x(yr_x^{-1}(a) + r_x^{-1}(b)) = yr_x(r_x^{-1}(a)) +
+            r_x(r_x^{-1}(b)) = ya + b$, so $r_x^{-1}(ya+b) =
+            yr_x^{-1}(a)+r_x^{-1}(b)$. $r_x^{-1}(1) = y$ is the left inverse of
+            $x$. $r_x^{-1}(a) = r_x^{-1}(a\cdot1) = ar_x^{-1}(1) = ay$, so
+            $r_x^{-1} = r_y$. So $xy = r_y(r_x(1)) = 1$, so $y$ is also a right
+            inverse of $x$.
+      \end{enumerate}
+      If $A$ is left Noetherian and $x$ is left invertible, so $r_x$ is
+      surjective, then if we let $I_i = \ker( (r_x)^i)$ be the kernel of $r_x$
+      iterated $i$ times, then $I_i$ is an ascending chain of left ideals so
+      must stabilize at some $I_i = I_{i+1}$, so $r_x$ is injective on the image
+      of $(r_x)^i$, but $r_x$ is surjective, so the image of $(r_x)^i$ is all of
+      $A$. So $r_x$ is injective and so $x$ has a two-sided inverse.
+
+   \item Denote the primary diagonal of a matrix the 1st diagonal, then the one
+      above it the 2nd, and so on. Then we note that if we take an upper
+      triangular matrix with zeros on the primary diagonal, and multiply it with
+      an upper triangular matrix with zeros below the $i$th diagonal, we get an
+      upper triangular matrix with zeros below the $(i+1)$st diagonal. Thus, if
+      we denote by $J$ the set of all upper triangular matrices with zeros on
+      the primary diagonal, we see that $J$ is a nilpotent ideal in $A$. Then $J
+      \subset Rad(A)$, (since if $\M$ is a maximal ideal with $J \not\subset \M$,
+      then $1 \in J + \M$, say $1 = n + m$ with $n \in J$ and $m \in \M$, then
+      $m = 1 - n \in \M$, but $1 - n$ is a unit -- a contradiction). And $A/J
+      \cong k^n$ is semisimple, so $Rad(A/J) = 0$, so $Rad(A) \subset J$. So $J
+      = Rad(A)$.
+
+   \item I don't know if we're supposed to show this from elementary principles,
+      but this follows from Wedderburn's Theorem. $(M \times N)^{op} = M^{op}
+      \times N^{op}$, and $(M_n(D))^{op} = M_n(D^{op})$, so the opposite of the
+      product of matrix algebras over division rings is the product of matrix
+      algebras over division rings.
+
+   \item Let $x_1,\dotsc,x_n$ be a basis for $V$ over $k$. This gives us a
+      $k$-linear inclusion $V \to k[x_1,\dotsc,x_n]$, by extending linearly from
+      the inclusion of the $x_i$. By the universal property, it suffices to show
+      that any $k$-linear map from $V$ to a (commutative) $k$-algebra $A$
+      extends uniquely to $k$-algebra homomorphism $k[x_1,\dotsc,x_n] \to A$, in
+      other words, that any set map $\{x_1,\dotsc,x_n\} \to A$ extends uniquely
+      to a $k$-algebra homomorphism $k[x_1,\dotsc,x_n] \to A$ (since $V$ is
+      free, these notions are equivalent). 
+
+      But this is clear. If we map $x_i \mapsto y_i \in A$, then this extends to
+      polynomials by $\sum a_Ix_I^{\alpha_I} \mapsto \sum a_Iy_I^{\alpha_I}$.
+      And this extension is clearly unique.
+
+   \item If we extend scalars to the algebraic closure of $k$, then neither the
+      reduced norm nor the invertibility of $x$ changes (if there is some $a
+      \otimes y \in \bar k \otimes A$ with $x \cdot (a \otimes y) = 1$, then $xy
+      = a^{-1} \in Z(A) = k$, so $x$ is invertible in $A$), so we may assume
+      that $k$ is algebraically closed. But then $A = M_n(k)$, and $Nrd(x) =
+      \det(x)$, so the result follows from linear algebra.
+
+\end{enumerate}
+\end{document}
